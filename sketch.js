@@ -16,7 +16,7 @@ function setup() {
   frameRate(15); //rallenta
   h1 = 'Ecco il tuo';
   h2 = 'pagellino da tifoso';
-  valutazione = 'Tifo Rozzo';
+
 
 }
 
@@ -29,6 +29,7 @@ function draw() {
     i++;
   }
 
+  valutazione = 'Tifo ROZZO';
   w = width / 20;
   h = height / 50;
 
@@ -69,10 +70,18 @@ imageMode(CENTER)
   ///  contenuto pagellino
 
   push();
+
   fill('#877B85'); //4° colore PALETTE
   textSize(13);
-  text(valutazione,  w * 8.85, h * 29.8);
+  text(valutazione,  w * 8.3, h * 29.8);
+  textAlign(LEFT, TOP);
+  textSize(10);
+  text('SCIARPATA',  w * 10, h * 23);
+  text('TROMBETTA',  w * 10, h * 26);
+  text('SCIARPATA',  w * 10, h * 29);
+  text('CORDINAZIONE',  w * 10, h * 31);
   pop();
+
 
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////
