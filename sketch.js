@@ -1,8 +1,9 @@
 let b1, b2, button_text, valutazione, bordo;
-let w, h, s, xBarra, logor;
+let w, h, s, xBarra, logor, daspoIcon;
 let i = 0;
 let h1, h2;
 let p_s, p_t, p_e, p_c; //percentuali
+let daspo = 0;
 
 //////////////////////////////////////////////////////
 
@@ -10,6 +11,7 @@ function preload() {
   logor = loadImage("./assets/logopiccolo.png"); //logo ridotto
   pagellino = loadImage("./assets/pagellino.png");
   bordo = loadImage("./assets/esterno.png");
+  daspoIcon = loadImage("./assets/daspoImg.png");
 }
 
 ///////////////////////////////////////////////
@@ -18,8 +20,6 @@ function setup() {
   frameRate(15); //rallenta
   h1 = 'Ecco il tuo';
   h2 = 'pagellino da tifoso';
-
-
 }
 
 /////////////////////////////////////////////////////
@@ -31,7 +31,6 @@ function draw() {
     i++;
   }
 
-  valutazione = 'Tifo ROZZO';
   w = width / 20;
   h = height / 50;
 
@@ -41,7 +40,7 @@ function draw() {
   textStyle(BOLD);
 
   //logo a destra
-      image(logor, w * 18.5, h * 6, logor.width / 4.5, logor.height / 4.5);
+  image(logor, w * 18.5, h * 6, logor.width / 4.5, logor.height / 4.5);
       //testo titolo
       push();
       fill('#877B85'); //4° colore PALETTE
@@ -153,6 +152,18 @@ p_c= 52;
             rect(w * 11 - w, h * 33.5 - 3, xBarra, 6, 20);
             pop();
 
+      if( daspo == 0){
+        valutazione = 'Tifo CURATO';
+      } else if (daspo == 1) {
+        valutazione = 'Tifo ROZZO';
+        push();
+        fill(249,249, 248, 225)
+        rect(w * 11.3, h * 28, w*2.7, h*13) //rect(x,y,w,h,[tl],[tr],[br],[bl])
+        //daspo icon
+        image(daspoIcon, w * 11.2, h * 28.7, daspoIcon.width / 1.3, daspoIcon.height / 1.3);
+        pop();
+      }
+
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -164,6 +175,15 @@ function p() {
 function back() {
   window.open('../indexPausa.html', '_self');
 }
+
+ function mousePressed(){
+   if (daspo == 0) {
+     daspo = 1;
+   } else if (daspo == 1) {
+     daspo = 0;
+   }
+ }
+
 
 function windowResized() {
   resizeCanvas(windowWidth, windowHeight);
