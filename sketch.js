@@ -1,13 +1,15 @@
-let b1, b2, button_text, valutazione;
+let b1, b2, button_text, valutazione, bordo;
 let w, h, s, xBarra, logor;
 let i = 0;
 let h1, h2;
+let p_s, p_t, p_e, p_c; //percentuali
 
 //////////////////////////////////////////////////////
 
 function preload() {
-  logor = loadImage("./logopiccolo.png"); //logo ridotto
-  pagellino = loadImage("./pagellino.png");
+  logor = loadImage("./assets/logopiccolo.png"); //logo ridotto
+  pagellino = loadImage("./assets/pagellino.png");
+  bordo = loadImage("./assets/esterno.png");
 }
 
 ///////////////////////////////////////////////
@@ -52,8 +54,10 @@ function draw() {
       pop();
 
 //pagellino
-imageMode(CENTER)
-      image(pagellino, w * 10, h * 27.5, pagellino.width / 1.7, pagellino.height / 1.7);
+imageMode(CORNER)
+      image(pagellino, w * 8, h * 23, pagellino.width / 1.4, pagellino.height / 1.4);
+      imageMode(CENTER)
+      image(bordo, w *10 , h * 28, bordo.width / 1.3, bordo.height / 1.3);
 
   button_text = 'Home';
 
@@ -67,21 +71,87 @@ imageMode(CENTER)
   b2.mousePressed(back);
   b2.id('pauseBtn')
 
-  ///  contenuto pagellino
+  ///  coordinazioni
+p_s= 25;
+p_t= 70;
+p_e= 21;
+p_c= 52;
 
   push();
 
   fill('#877B85'); //4° colore PALETTE
-  textSize(13);
-  text(valutazione,  w * 8.3, h * 29.8);
+  textSize(16);
+  text(valutazione,  w * 8.6, h * 31.5);
   textAlign(LEFT, TOP);
   textSize(10);
-  text('SCIARPATA',  w * 10, h * 23);
-  text('TROMBETTA',  w * 10, h * 26);
-  text('SCIARPATA',  w * 10, h * 29);
-  text('CORDINAZIONE',  w * 10, h * 31);
+  text('SCIARPATA',  w * 10, h * 24);
+  text('TROMBETTA',  w * 10, h * 26.2);
+  text('ESULTAZIONI',  w * 10, h * 28.4);
+  text('COORDINAZIONE',  w * 10, h * 32);
+  textSize(8);
+    text(p_s + '%',  w * 12.1, h * 24.7);
+    text(p_t + '%',  w * 12.1, h * 27.1);
+    text(p_e + '%',  w * 12.1, h * 29.3);
+    text(p_c + '%',  w * 12.1, h * 33.2);
   pop();
 
+///////////////////////// barre
+
+//BARRA SCIARPATA
+    fill('#D5D0D3'); //barra grigia
+    rectMode(CENTER);
+    noStroke();
+    rect(w * 11, h * 25.2, w*2, 6, 20);
+    //xBarra = ((width / 3.5) / 100) * p_coord; //altezza barra %, xTot= 439 = width / 3.5
+    xBarra = ((w*2) / 100) * p_s;
+    push();
+    rectMode(CORNER);
+    fill('#877B85'); //barra viola
+    //width/7 è la metà della barra, che è lunga width/3.5
+    rect(w * 11 - w, h * 25.2 - 3, xBarra, 6, 20);
+    pop();
+
+    //BARRA TROMBETTA
+        fill('#D5D0D3'); //barra grigia
+        rectMode(CENTER);
+        noStroke();
+        rect(w * 11, h * 27.4, w*2, 6, p_t);
+        //xBarra = ((width / 3.5) / 100) * p_coord; //altezza barra %, xTot= 439 = width / 3.5
+        xBarra = ((w*2) / 100) * 70; //25%
+        push();
+        rectMode(CORNER);
+        fill('#877B85'); //barra viola
+        //width/7 è la metà della barra, che è lunga width/3.5
+        rect(w * 11 - w, h * 27.4 - 3, xBarra, 6, p_e);
+        pop();
+
+    //BARRA esultazione
+        fill('#D5D0D3'); //barra grigia
+        rectMode(CENTER);
+        noStroke();
+        rect(w * 11, h * 29.6, w*2, 6, 20);
+        //xBarra = ((width / 3.5) / 100) * p_coord; //altezza barra %, xTot= 439 = width / 3.5
+        xBarra = ((w*2) / 100) * p_c; //
+        push();
+        rectMode(CORNER);
+        fill('#877B85'); //barra viola
+        //width/7 è la metà della barra, che è lunga width/3.5
+        rect(w * 11 - w, h * 29.6 - 3, xBarra, 6, 20);
+        pop();
+
+        //BARRA COORDINAZIONE
+            fill('#D5D0D3'); //barra grigia
+            rectMode(CENTER);
+            noStroke();
+            rect(w * 11, h * 33.5, w*2, 6, 20);
+            //xBarra = ((width / 3.5) / 100) * p_coord; //altezza barra %, xTot= 439 = width / 3.5
+            xBarra = ((w*2) / 100) * 52; //
+            push();
+            rectMode(CORNER);
+            fill('#877B85'); //barra viola
+            //width/7 è la metà della barra, che è lunga width/3.5
+            rect(w * 11 - w, h * 33.5 - 3, xBarra, 6, 20);
+            pop();
 
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////
